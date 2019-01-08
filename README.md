@@ -30,4 +30,4 @@ Tested on WordPress versions 4.9.7 and 4.9.8.
 
 
 ## Contact
-You can reach me through [fridrikjuliusson.com](fridrikjuliusson.com).
+You can reach me through [fridrikjuliusson.com](https://fridrikjuliusson.com).
