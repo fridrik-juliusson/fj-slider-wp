@@ -27,15 +27,11 @@ Edited mistake in README.md
 
 Tested on WordPress version 4.9.8.
 
-
-## Versions and change log:
-
 ### v. 1.0
 Responsive slider for up to five slides.
 Support for AMP.
 
 Tested on WordPress versions 4.9.7 and 4.9.8.
-
 
 ## Contact
 You can reach me through [fridrikjuliusson.com](https://fridrikjuliusson.com).
