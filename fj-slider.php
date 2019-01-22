@@ -4,7 +4,7 @@
 Plugin Name: FJ Slider for WordPress
 Plugin URI: https://github.com/fridrik-juliusson/fj-slider-wp
 Description: A very light and easy to use slider plugin for WordPress.
-Version: 1.0
+Version: 1.0.1
 Author: Fridrik Juliusson
 Author URI: https://fridrikjuliusson.com/
 */
@@ -14,40 +14,45 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Set default value for options if not set
-if (!get_option('fjs-add-menu-page')) {
-    update_option('fjs-add-menu-page', 'no');
+function fjs_on_activate() {
+    // Only executed on plugin activation
+    // Set default value for options if not set
+    if (!get_option('fjs-add-menu-page')) {
+        update_option('fjs-add-menu-page', 'no');
+    }
+    if (!get_option('fjs-show-mobile')) {
+        update_option('fjs-show-mobile', 'no');
+    }
+    if (!get_option('fjs-load-amp-script')) {
+        update_option('fjs-load-amp-script', 'no');
+    }
+    if (!get_option('fjs-image-width')) {
+        update_option('fjs-image-width', '900');
+    }
+    if (!get_option('fjs-image-height')) {
+        update_option('fjs-image-height', '338');
+    }
+    if (!get_option('fjs-use-custom-css')) {
+        update_option('fjs-use-custom-css', 'no');
+    }
+    if (!get_option('fjs-slide-show-1')) {
+        update_option('fjs-slide-show-1', 'no');
+    }
+    if (!get_option('fjs-slide-show-2')) {
+        update_option('fjs-slide-show-2', 'no');
+    }
+    if (!get_option('fjs-slide-show-3')) {
+        update_option('fjs-slide-show-3', 'no');
+    }
+    if (!get_option('fjs-slide-show-4')) {
+        update_option('fjs-slide-show-4', 'no');
+    }
+    if (!get_option('fjs-slide-show-5')) {
+        update_option('fjs-slide-show-5', 'no');
+    }
+
 }
-if (!get_option('fjs-show-mobile')) {
-    update_option('fjs-show-mobile', 'no');
-}
-if (!get_option('fjs-load-amp-script')) {
-    update_option('fjs-load-amp-script', 'no');
-}
-if (!get_option('fjs-image-width')) {
-    update_option('fjs-image-width', '900');
-}
-if (!get_option('fjs-image-height')) {
-    update_option('fjs-image-height', '338');
-}
-if (!get_option('fjs-use-custom-css')) {
-    update_option('fjs-use-custom-css', 'no');
-}
-if (!get_option('fjs-slide-show-1')) {
-    update_option('fjs-slide-show-1', 'no');
-}
-if (!get_option('fjs-slide-show-2')) {
-    update_option('fjs-slide-show-2', 'no');
-}
-if (!get_option('fjs-slide-show-3')) {
-    update_option('fjs-slide-show-3', 'no');
-}
-if (!get_option('fjs-slide-show-4')) {
-    update_option('fjs-slide-show-4', 'no');
-}
-if (!get_option('fjs-slide-show-5')) {
-    update_option('fjs-slide-show-5', 'no');
-}
+register_activation_hook( __FILE__, 'fjs_on_activate' );
 
 
 function fjs_add_slider() {
