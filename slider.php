@@ -35,19 +35,16 @@ echo '</style>';
 #fjs-slider-wrap * {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "メイリオ",Meiryo,"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","ＭＳ Ｐゴシック","Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;
 }
 
 
 /* SLIDER WRAP & SLIDES */
 
-
 #fjs-slider-wrap {
-    width: 900px;
-    height: 338px;
     position: relative;
     margin: 0;
-    display: inline-block;
+    display: block;
     max-width: 100%;
 }
 
@@ -67,7 +64,6 @@ echo '</style>';
 
 #fjs-slider-wrap #fjs-slider li {
     position: absolute;
-    transition: all 2.5s;
     opacity: 0;
     display: block;
     max-width: 100%;
@@ -75,6 +71,8 @@ echo '</style>';
 #fjs-slider-wrap #fjs-slider li.fjs-active {
     z-index: 2;
     opacity: 1;
+    position: relative;
+    transition: opacity 2s;
 }
 #fjs-slider-wrap #fjs-slider li.fjs-active a{
     z-index: 4;
@@ -82,36 +80,38 @@ echo '</style>';
 
 
 #fjs-slider-wrap #fjs-slider li p {
-    display: block;
-    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     color: white;
     position: absolute;
-    bottom: 10%;
-    padding: 20px;
+    bottom: 5%;
+    padding: 0px 20px;
     box-sizing: border-box;
     margin: 0;
     font-size: 1.4em;
     font-weight: bold;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+    text-shadow: 0px 0px 40px rgba(255,255,255,0.5), 2px 2px 3px rgba(0,0,0,0.6), 1px 3px 5px rgba(0,0,0,0.3);
     line-height: 140%;
 }
 
 #fjs-slider-wrap #fjs-slider li a {
-    min-width: 220px;
-    height: 60px;
+    min-width: 300px;
     text-align: center;
-    line-height: 60px;
-    background: #af4448;
-    border-radius: 5px;
+    background: linear-gradient(45deg, #ffa4a2, #e57373 10%, #af4448 90%);
+    border-radius: 25px;
     text-decoration: none;
     font-size: 1.2em;
-    position: absolute;
     color: white;
     box-shadow: 1px 3px 15px rgba(0,0,0,0.35);
-    top: 40%;
-    left: 5%;
     display: inline-block;
     max-width: 100%;
+    font-weight: normal;
+    text-shadow: none;
+    padding: 30px 10px;
+    margin-left: 20px;
 }
 
 #fjs-slider-wrap #fjs-slider img {
@@ -122,54 +122,40 @@ echo '</style>';
     max-width: 100%;
 }
 
+/* fjs-slider-counter */
 
-
-/* fjs-SLIDER MENU */
-
-#fjs-slider-wrap ul#fjs-slider-menu {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    box-sizing: border-box;
-    height: var(--fjs-menu-height);
-    border-top-right-radius: 5px;
-    padding: 0px;
-    margin: 0;
-}
-
-#fjs-slider-wrap ul#fjs-slider-menu li{
-    position: relative;
-    margin: 0px;
-    padding: 0px 10px;
-    background: #37474f;
-    display: inline-block;
+#fjs-slider-counter.fjs-slider-counter {
     width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    background: #37474f;
+}
+#fjs-slider-counter.fjs-slider-counter span {
+    display: block;
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px 7px;
+    text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-    transition: all 1.4s;
+    transition: all 1.2s;
 }
-
-#fjs-slider-wrap ul#fjs-slider-menu li:first-child {
-    border-top-right-radius: 5px;
+#fjs-slider-counter.fjs-slider-counter img {
+    display: block;
+    flex-grow: 1;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
 }
-
-#fjs-slider-wrap #fjs-slider-menu img {
-    height: 50px;
-    border-radius: 3px;
-}
-#fjs-slider-wrap ul#fjs-slider-menu li.fjs-active{
-    background: #af4448;
+#fjs-slider-counter.fjs-slider-counter span.fjs-active {
+    background: #e57373;
 }
 
 @media all and (max-width: 767px){
+    #fjs-slider-wrap #fjs-slider li p {
+        padding: 0px 10px;
+    }
+
     #fjs-slider-wrap ul#fjs-slider-menu,
     #fjs-slider-wrap #fjs-slider li a {
         display: none;
@@ -180,6 +166,9 @@ echo '</style>';
         line-height: 120%;
         text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
     }
+    #fjs-slider-counter.fjs-slider-counter span {
+        padding: 8px 4px;
+    }
 }
 </style>
 <?php endif;?>
@@ -189,22 +178,22 @@ echo '</style>';
     <div class="fjs-slider" id="fjs-slider">
         <ul>
             <?php foreach ($slides as $index => $slide):?>
-            <li <?php if ($index === 0):?>class="fjs-active"<?php endif;?>>
+            <li <?php if ($index === 0):?>class="fjs-active" <?php endif;?> data-link="<?php echo $slide['url']?>">
                 <img src="<?php echo $slide['image']?>" alt="<?php echo $slide['text']?>">
-                <p><?php echo $slide['text']?></p>
-                <a href="<?php echo $slide['url']?>"><?php echo $slide['button']?></a>
+                <p><span><?php echo $slide['text']?></span><a href="<?php echo $slide['url']?>"><?php echo $slide['button']?></a></p>
+                
             </li>
             <?php endforeach;?>
         </ul>
     </div>
-    <?php if (count($slides) > 1):?>
-    <ul class="fjs-slider-menu" id="fjs-slider-menu">
-        <?php foreach ($slides as $index => $slide):?>
-        <li <?php if ($index === 0):?>class="fjs-active"<?php endif;?> data-slide="<?php echo $index + 1;?>">
-            <img src="<?php echo $slide['image']?>" alt="<?php echo $slide['text']?>">
-        </li>
-        <?php endforeach;?>
-    </ul>
-    <?php endif;?>
 </div>
+<?php if (count($slides) > 1):?>
+<div class="fjs-slider-counter" id="fjs-slider-counter">
+    <?php foreach ($slides as $index => $slide):?>
+    <span id="fjs-slider-counter-<?php echo $index + 1;?>"<?php if ($index === 0):?>class="fjs-active"<?php endif;?> data-slide="<?php echo $index + 1;?>">
+        <img src="<?php echo $slide['image']?>" alt="<?php echo $slide['text']?>">
+    </span>
+    <?php endforeach;?>
+</div>
+<?php endif;?>
 <?php endif;?>
