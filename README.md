@@ -21,6 +21,18 @@ _The amp-carousel element requires the page to load amp-image-slider-0.1.js and 
 
 ## Versions and change log:
 
+### v. 1.0.2
+Moved the thumbnails from right to bottom to improve usability on smartphones and to give a more uniform feel to the design when less than 5 slides are used.
+
+Made slider images clickable.
+
+Small refactoring of JavaScript.
+
+Small adjustment to slider timing.
+
+
+Tested on WordPress version 4.9.8.
+
 ### v. 1.0.1
 Enhanced performance by only ckecking and setting default values at plugin activation.
 Edited mistake in README.md

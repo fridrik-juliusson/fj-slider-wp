@@ -1,59 +1,59 @@
 const slides = document.querySelectorAll('.fjs-slider li');
-const slideThumbnails = document.querySelectorAll('.fjs-slider-menu li');
+const slideCounters = document.querySelectorAll('.fjs-slider-counter span');
 
 let numberOfSlides = slides.length;
 
-if (numberOfSlides > 1) {
-
-    var id = 2;
-    
-    let slideNumber = 1;
+let slideNumber = 1;
     slides.forEach((value) => {
         value.id = 'fj-slide-' + slideNumber;
+        value.addEventListener('click', () => {
+            location.href = value.dataset.link;
+        });
         slideNumber++;
     });
 
+if (numberOfSlides > 1) {
+
     slideNumber = 1;
-    slideThumbnails.forEach((value) => {
-        value.id = 'fj-slide-thumbnail-' + slideNumber;
-        console.log(value.dataset.slide);
+    slideCounters.forEach((value) => {
+        value.id = 'fj-slide-counter-' + slideNumber;
         value.addEventListener('click', function () {
             let slide = value.dataset.slide;
             let previousSlide = document.querySelector('.fjs-slider li.fjs-active');
             previousSlide.classList.remove('fjs-active');
             let nextSlide = document.getElementById("fj-slide-" + slide);
             nextSlide.classList.add('fjs-active');
-            id = slide;
+            slideNumber = slide;
 
-            let previousThumbnail = document.querySelector('.fjs-slider-menu li.fjs-active');
-            let nextThumbnail = document.getElementById("fj-slide-thumbnail-" + slide);
+            let previousThumbnail = document.querySelector('.fjs-slider-counter span.fjs-active');
+            let nextThumbnail = document.getElementById("fj-slide-counter-" + slide);
             previousThumbnail.classList.remove('fjs-active');
             nextThumbnail.classList.add('fjs-active');
         });
+        
         slideNumber++;
     });
 
     function changeSlide() {
-        if (id > numberOfSlides) {
-            id = 1;
+        if (slideNumber > numberOfSlides) {
+            slideNumber = 1;
         }
 
         let previousSlide = document.querySelector('.fjs-slider li.fjs-active');
-        let nextSlide = document.getElementById("fj-slide-" + id);
+        let nextSlide = document.getElementById("fj-slide-" + slideNumber);
         previousSlide.classList.remove('fjs-active');
         nextSlide.classList.add('fjs-active');
 
-        let previousThumbnail = document.querySelector('.fjs-slider-menu li.fjs-active');
-        let nextThumbnail = document.getElementById("fj-slide-thumbnail-" + id);
-        previousThumbnail.classList.remove('fjs-active');
-        nextThumbnail.classList.add('fjs-active');
+        let previousCounter = document.querySelector('.fjs-slider-counter span.fjs-active');
+        let nextCounter = document.getElementById("fj-slide-counter-" + slideNumber);
+        previousCounter.classList.remove('fjs-active');
+        nextCounter.classList.add('fjs-active');
 
-        id++;
+        slideNumber++;
     }
 
-    setTimeout(() => {
-        changeSlide();
-        window.setInterval(changeSlide, 5000);
-    }, 3000);
+    changeSlide();
+    window.setInterval(changeSlide, 6000);
+    
 }
 
