@@ -67,6 +67,7 @@ echo '</style>';
     opacity: 0;
     display: block;
     max-width: 100%;
+    z-index:-1;
 }
 #fjs-slider-wrap #fjs-slider li.fjs-active {
     z-index: 2;
@@ -129,6 +130,8 @@ echo '</style>';
     display: flex;
     flex-direction: row;
     background: #37474f;
+    z-index: 4;
+    position: relative;
 }
 #fjs-slider-counter.fjs-slider-counter span {
     display: block;
