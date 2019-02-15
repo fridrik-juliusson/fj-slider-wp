@@ -92,7 +92,7 @@ function fjs_register_menu_page() {
         'fjs/slider-settings.php',
         'fjs_settings_page',
         'dashicons-images-alt',
-        8
+        50
     );
 
 }

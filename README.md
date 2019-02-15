@@ -21,6 +21,9 @@ _The amp-carousel element requires the page to load amp-image-slider-0.1.js and 
 
 ## Versions and change log:
 
+### v. 1.0.4
+Moved the menu page link to a lower position.
+
 ### v. 1.0.3
 Fixed an issue that was introduced in 1.0.2 that caused thumbnails to be unclickable on small screens.
 
